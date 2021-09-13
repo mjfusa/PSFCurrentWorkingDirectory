@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10" xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap uap10 desktop6 rescap">
+  <!--Package created by MSIX Packaging Tool version: 1.2021.422.0-->
+  <Identity Name="TerminalServerAgent" Publisher="CN=mikefra" Version="10.0.312.0" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>Terminal Server Agent</DisplayName>
+    <PublisherDisplayName>Palo Alto Networks</PublisherDisplayName>
+    <Description>Terminal Server Agent</Description>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <uap10:PackageIntegrity>
+      <uap10:Content Enforcement="on" />
+    </uap10:PackageIntegrity>
+  </Properties>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.19041.1" />
+  </Dependencies>
+  <Applications>
+    <Application Id="TACONTROLLER" Executable="PsfLauncher64.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements BackgroundColor="transparent" DisplayName="Terminal Server Agent" Square150x150Logo="Assets\TACONTROLLER-Square150x150Logo.png" Square44x44Logo="Assets\TACONTROLLER-Square44x44Logo.png" Description="Terminal Server Agent">
+        <uap:DefaultTile Wide310x150Logo="Assets\TACONTROLLER-Wide310x150Logo.png" Square310x310Logo="Assets\TACONTROLLER-Square310x310Logo.png" Square71x71Logo="Assets\TACONTROLLER-Square71x71Logo.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <desktop6:Extension Category="windows.service" Executable="VFS\ProgramFilesX64\Palo Alto Networks\Terminal Server Agent\TaService.exe" EntryPoint="Windows.FullTrustApplication">
+          <desktop6:Service Name="PAN Terminal Server Agent" Description="PAN Agent for Windows Terminal Server"
+          DependOnService="TermService" foo1="asdf"
+          StartupType="auto" StartAccount="localSystem" >
+          <desktop6:Dependencies>
+            desktop6:TermService
+          </desktop6:Dependencies>
+          </desktop6:Service>
+        </desktop6:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <rescap:Capability Name="localSystemServices" />
+    <rescap:Capability Name="packagedServices" />
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>
